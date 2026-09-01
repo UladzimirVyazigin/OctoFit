@@ -1,19 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { connectDatabase } from './config/database.js';
 import User from './models/User.js';
 import Team from './models/Team.js';
 import Activity from './models/Activity.js';
 import LeaderboardEntry from './models/LeaderboardEntry.js';
 import Workout from './models/Workout.js';
-dotenv.config();
+import { baseUrl, port } from './server.js';
 const app = express();
-const port = 8000;
-const codespaceName = process.env.CODESPACE_NAME;
-const baseUrl = codespaceName
-    ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
 app.use(cors());
 app.use(express.json());
 function formatDocument(doc) {
